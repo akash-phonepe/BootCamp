@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">newsfresh</string>
+    <string name="exploreText">Explore</string>
+    <string name="filterText">Filter</string>
+    <string name="searchBarText">Search</string>
+    <string name="mrpText">MRP:</string>
+</resources>
