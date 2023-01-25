@@ -10,37 +10,46 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:background="@color/header_bg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="5dp">
 
             <TextView
                 android:id="@+id/exploreTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@string/exploreText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAppearance="@style/boldText"
+                android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/searchView"
+                android:id="@+id/filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@string/filterText"
                 app:layout_constraintBottom_toBottomOf="@+id/exploreTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/exploreTextView" />
+                app:layout_constraintTop_toTopOf="@+id/exploreTextView"
+                android:textAppearance="@style/greenText"
+                android:textSize="18sp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="5dp">
 
             <SearchView
                 android:layout_width="match_parent"
@@ -49,20 +58,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:queryHint="@string/searchBarText"
+                android:background="@drawable/rounded_border"
+                android:backgroundTint="@color/white"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:padding="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listofNews"
+            android:id="@+id/newsList"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,61 +85,51 @@
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:layout_weight="0"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:paddingHorizontal="20dp"
+        android:background="@color/footer_bg">
 
         <ImageButton
             android:id="@+id/navButton1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/btn_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
+            android:background="@drawable/grey_circular_button" />
 
         <ImageButton
             android:id="@+id/navButton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/btn_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
+            android:background="@drawable/grey_circular_button" />
 
         <ImageButton
             android:id="@+id/navButton3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/btn_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
+            android:background="@drawable/grey_circular_button" />
 
         <ImageButton
             android:id="@+id/navButton4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/btn_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
+            android:background="@drawable/grey_circular_button"/>
 
         <ImageButton
             android:id="@+id/navButton5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/btn_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
+            android:background="@drawable/grey_circular_button"/>
     </LinearLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
-    </com.google.android.material.navigation.NavigationView>
 
 </LinearLayout>

@@ -5,42 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfresh.databinding.ItemNewsBinding
 
-//class NewsListAdapter(private val items: ArrayList<String>, private val listener: NewsItemClicked) : RecyclerView.Adapter<NewsViewHolder>() {
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
-//        val viewHolder = NewsViewHolder(view)
-//        view.setOnClickListener{
-//            listener.onItemClicked(items[viewHolder.adapterPosition])
-//        }
-//        return viewHolder
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return items.size
-//    }
-//
-//    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-//        val currentItem = items[position]
-//        holder.titleView.text = currentItem
-//    }
-//
-//}
-//
-//class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//    val titleView: TextView = itemView.findViewById(R.id.title)
-//}
 
 interface NewsItemClicked {
-    fun onItemClicked(item: String)
+    fun onItemClicked(item: Item)
 }
 
-class NewsListAdapter(private val items: ArrayList<Triple<String, String, String?>>, private val listener: NewsItemClicked) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsListAdapter(private val items: ArrayList<Item>, private val listener: NewsItemClicked) : RecyclerView.Adapter<NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = NewsViewHolder(view)
         view.imageView.setOnClickListener{
-            listener.onItemClicked(items[viewHolder.adapterPosition].first)
+            listener.onItemClicked(items[viewHolder.adapterPosition])
         }
         return viewHolder
     }
@@ -51,10 +27,17 @@ class NewsListAdapter(private val items: ArrayList<Triple<String, String, String
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val currentItem = items[position]
-        holder.titleView.text = currentItem.first
-        holder.priceView.text = currentItem.second
-        holder.shippingView.text = currentItem.third
+        holder.titleView.text = currentItem.title
+        holder.priceView.text = currentItem.price
+        holder.shippingView.text = if(currentItem.extra == "null") " " else currentItem.extra
         holder.image.setImageResource(R.drawable.color_rectangle)
+    }
+
+    fun updateItem(updateItems: ArrayList<Item>){
+        items.clear()
+        items.addAll(updateItems)
+
+        notifyDataSetChanged()
     }
 
 }

@@ -5,16 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfresh.databinding.CardViewBinding
 
-//class NewsGridAdapter(pri) {
-//}
-
-class NewsGridAdapter(private val items: ArrayList<Triple<String, String, String?>>, private val listener: NewsItemClicked) : RecyclerView.Adapter<CardViewHolder>() {
+class NewsGridAdapter(private val items: ArrayList<Item>, private val listener: NewsItemClicked) : RecyclerView.Adapter<CardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val view = CardViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = CardViewHolder(view)
         view.cardImage.setOnClickListener{
-            listener.onItemClicked(items[viewHolder.adapterPosition].first)
+            listener.onItemClicked(items[viewHolder.adapterPosition])
         }
         return viewHolder
     }
@@ -25,8 +22,8 @@ class NewsGridAdapter(private val items: ArrayList<Triple<String, String, String
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val currentItem = items[position]
-        holder.titleView.text = currentItem.first
-        holder.priceView.text = currentItem.second
+        holder.titleView.text = currentItem.title
+        holder.priceView.text = currentItem.price
         holder.image.setImageResource(R.drawable.color_rectangle)
     }
 
